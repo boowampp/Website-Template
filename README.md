@@ -1,2 +1,2 @@
-# Website-Template
+## Website-Template
 My personal website template
