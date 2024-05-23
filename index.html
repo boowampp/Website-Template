@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IN YOUR WALLS    </title>
+    <style>
+        body {
+            font-family: Comfortaa, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333; 
+            position: relative;
+        }
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .header-container {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(128, 128, 128, 0.1); 
+            border-radius: 15px;
+            margin: 20px auto 0; 
+            max-width: 800px;
+        }
+        header h1, header p {
+            margin: 0;
+            color: #fff; 
+        }
+        nav {
+            margin: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #fff;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 5px 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .tab-content {
+            display: none;
+            color: #ffffff; 
+        }
+        .tab-content.active {
+            display: block;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgba(0, 0, 0, 0);
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .audio-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px; 
+            background-color: rgb(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 10px;
+        }
+        .audio-controls button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            margin: 0 10px;
+            color: #ffffff;
+        }
+        .audio-controls input[type="range"] {
+            width: 80px;
+            margin: 0 10px;
+        }
+    </style>
+    <script>
+        var audio = new Audio('bio.mp3');
+        var isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+            updateButton();
+        }
+
+        function updateButton() {
+            var playPauseButton = document.getElementById('play-pause-button');
+            playPauseButton.textContent = isPlaying ? 'Pause' : 'Play';
+        }
+        
+        function changeVolume() {
+            var volume = document.getElementById('volume-slider').value;
+            audio.volume = volume / 100;
+        }
+        
+        audio.volume = 0.1;
+        document.getElementById('volume-slider').value = 10;
+        
+        function openTab(evt, tabName) {
+            var i, tabContent, tabLinks;
+            
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+            }
+            
+            tabLinks = document.getElementsByTagName("a");
+            for (i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+            }
+            
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</head>
+<body>
+    <video autoplay muted loop>
+        <source src="amv.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <header>
+        <div class="header-container">
+            <h1>Boowamp</h1>
+            <p>i fw woodlice fr</p>
+        </div>
+    </header>
+    <nav>
+        <a href="#" class="active" onclick="openTab(event, 'about')">About Me</a>
+        <a href="#" onclick="openTab(event, 'projects')">Projects</a>
+        <a href="#" onclick="openTab(event, 'contact')">Contact Info</a>
+    </nav>
+    <div class="container">
+        <section id="about" class="tab-content active">
+            <h2>About Me</h2>
+            <p>🔥 Wheezy is not out of here 🔥</p>
+        </section>
+        <section id="projects" class="tab-content">
+            <h2>Projects</h2>
+            <ul>
+                <li><strong>Random Key Generator: </strong>  - github.com/boowampp/Discord-Python-KeyGen</li>
+                <li><strong>Github Commit Bot: </strong>  - github.com/boowampp/CommitBot</li>
+                <li><strong>Windows Activator: </strong>  - github.com/boowampp/AzurWindows</li>
+            </ul>
+        </section>
+        <section id="contact" class="tab-content">
+            <h2>Contact Info</h2>
+            <p>You can reach me at:</p>
+            <ul>
+                <li>Discord: <a href="https://discord.com/users/842566547389153300" target="_blank">boowamp</a></li>
+                <li>GitHub: <a href="https://github.com/boowampp" target="_blank">boowamp</a></li>
+            </ul>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Boowamp. All rights reserved.</p>
+    </footer>
+    <div class="audio-controls">
+        <button id="play-pause-button" onclick="toggleAudio()">Play</button>
+        <input type="range" id="volume-slider" min="0" max="100" onchange="changeVolume()" value="10">
+    </div>
+</body>
+</html>
